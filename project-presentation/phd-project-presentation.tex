@@ -205,7 +205,7 @@
 
   \begin{columns}
     \begin{column}{0.59\textwidth}
-\textbf{Background:} Text.
+\textbf{Background:} Vertical velocity $v$ of the center of mass of the coil needs to be measured.
     
     \textbf{Problem:} Captured velocities $v$ due to tilt of the coil not captured by induced voltages $U_d$.
 
@@ -228,7 +228,7 @@
 
   \begin{columns}
     \begin{column}{0.59\textwidth}
-\textbf{Background:} Text.
+\textbf{Background:} Voltage to velocity ratio $U_d/v$ needs to be fitted with a polynomial to determine value at weighting position.
     
     \textbf{Problem:} Choice of polynomial order for fit of $G_e$ profile is not substantiated.
     
@@ -249,7 +249,7 @@
 \begin{frame}[allowframebreaks]{Hypotheses}
   \framesubtitle{Hypothesis and aim 3}
 
-\textbf{Background:} Text.
+\textbf{Background:} Given two methods $m_1$ and $m_2$ with associated uncertainties $\sigma_1$ and $\sigma_2$ to determine some quantity $m$, $\sigma_m \leq \min(\sigma_1,\sigma_2)$ holds.
 
 \textbf{Problem:} Currently, there is only one method (Kibble balance) available to trace the kilogram back to the Planck constant $h$.
 
@@ -261,11 +261,11 @@
 
   \begin{columns}
     \begin{column}{0.59\textwidth}
-\textbf{Background:} Text.
+\textbf{Background:} Tedious alignment of the watt balance experiment is needed to perform accurate measurements.
 
 \textbf{Problem:} Non-ideal alignment of the Kibble balance has effects contributing to uncertainties of $G_e$, $G_m$ and thus $m=G_eG_m^{-1}$.
 
-\textbf{Hypothesis:} Systematically variying the alignment parameters $p_1,\dots,p_k$ and studying the associated outcome for $G_e$ and $G_m$, an artificial neural network can be trained to correct for alingment errors.
+\textbf{Hypothesis:} Systematically varying the alignment parameters $p_1,\dots,p_k$ and studying the associated outcome for $G_e$ and $G_m$, an artificial neural network can be trained to correct for alingment errors.
     \end{column}
     
     \begin{column}{0.4\textwidth}
@@ -281,19 +281,69 @@
 
 \section{Methods and research plan}
 \begin{frame}[allowframebreaks]{Methods and research plan}
-  \framesubtitle{Milestones}
-    Text.
+  \framesubtitle{Plan}
+    \begin{table}[h]
+	\tiny
+	\centering
+	\begin{tabularx}{\textwidth}{|X|c|c|c|c|c|c|c|}
+		\hline
+		& FS24 & HS24 & FS25 & HS25 & FS26 & HS26 & FS27 \\
+		\hline
+		Achieve familiarity with existing experimental setup
+		& \multicolumn{1}{>{\columncolor{lightgray}}c|}{} & & & & & &\\ 
+		\hline
+		Implement 3-interferometer technique, possibly write publication
+		& 
+		& \multicolumn{1}{>{\columncolor{lightgray}}c|}{} &  &  &  & & \\
+		\hline
+		Attend lectures and conduct gravimetric measurements, possibly write publication
+		& & & \multicolumn{1}{>{\columncolor{lightgray}}c|}{} & & & & \\
+		\hline
+		Determine suitable polynomial order for $G_e$ profile fit by FEM and measurements
+		&
+		&
+		&  & \multicolumn{1}{>{\columncolor{lightgray}}c|}{} &  & & \\
+		\hline
+		Gather data for AI model, build, train and test it
+		&
+		&
+		&
+		&  & \multicolumn{1}{>{\columncolor{lightgray}}c|}{} &  & \\
+		\hline
+		Develop the METAS joule balance mode and test it, possibly write publication
+		&
+		&
+		&
+		&
+		&  & \multicolumn{1}{>{\columncolor{lightgray}}c|}{} & \\
+		\hline
+		Compile findings into PhD thesis
+		&
+		&
+		&
+		&
+		&
+		&  & \multicolumn{1}{>{\columncolor{lightgray}}c|}{} \\
+		\hline
+
+	\end{tabularx}
+\end{table}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Methods and research plan}
-  \framesubtitle{Anticipated problems and possible solutions}
-  Text.
-\end{frame}
+%\begin{frame}[allowframebreaks]{Methods and research plan}
+%  \framesubtitle{Anticipated problems and possible solutions}
+%  Text.
+%\end{frame}
 
 \section{Significance}
 \begin{frame}[allowframebreaks]{Significance}
   \framesubtitle{Significance of the proposed project}
-    Text.
+    \begin{itemize}
+        \item As of today, no independent realization of the kilogram using a Kibble or joule balance experiment is possible.
+        \item The proposed project aims for a reduction of the associated uncertainty and hence contributes towards independent realization of the kilogram.
+        \item Industries around the world rely on traceability of their measurement equipment to the SI units.
+        \item The METAS joule-watt balance contributes to this traceability.
+    \end{itemize}
 \end{frame}
 
 \section*{Literature}
