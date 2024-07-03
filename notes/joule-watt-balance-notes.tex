@@ -1141,6 +1141,12 @@ An example plot of \cref{eq:combined_uncertainty} for $\sigma_{m_1} = \sigma_1 =
 	\label{fig:correlated_procedures}
 \end{figure}
 It can be seen from the plot, that indeed the combined uncertainty is always smaller than or equal to the smaller of both input uncertainties $\sigma_1$ or $\sigma_2$; in the case at hand, $\sigma_m \leq \sigma_1$, because $\sigma_1 < \sigma_2$.
+
+Since any additional methods $m_2,\dots,m_h$ with associated uncertainties $\sigma_1,\dots,\sigma_h$ with $h \in \mathbb{N}$ can be incorporated in the same manner as if one has only two, namely \begin{equation}
+	m = \sum_{i=1}^{h}w_im_i,
+\end{equation} one can make the argument that the presented result for the combined uncertainty $\sigma_m$ is always equal or less than the smallest involved uncertainty, i.e. \begin{equation}
+\sigma_m \leq \min(\sigma_1,\dots,\sigma_h).
+\end{equation}
 	
 \bibliography{references}
 \bibliographystyle{apalike}
