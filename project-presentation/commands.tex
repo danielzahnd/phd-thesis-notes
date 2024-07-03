@@ -1,0 +1,41 @@
+% Include commands
+% ----------------
+
+\setlength{\parskip}{8pt}
+\setlength{\parindent}{0pt}
+\captionsetup{font=scriptsize,labelfont=bf}
+
+% Define color
+\definecolor{ubRed}{HTML}{E6002E}
+\colorlet{ubRedt}{ubRed!30}
+\definecolor{ubGrey}{RGB}{217,217,217}
+
+% Set the color theme
+\setbeamercolor{structure}{fg=ubRed}
+\setbeamercolor{frametitle}{bg=ubGrey, fg=ubRed}
+\setbeamercolor{title}{fg=ubRed, bg=ubGrey}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{date}{fg=black}
+
+% Units definitions
+\DeclareSIUnit \parsec {pc}
+\DeclareSIUnit \magnitudes {mag}
+\DeclareSIUnit \gauss {G}
+
+\makeatletter
+\let\org@parboxrestore\@parboxrestore
+\def\@parboxrestore{%
+\edef\restore@parsettings{%
+\parindent=\the\parindent\relax
+\parskip=\the\parskip\relax
+}%
+\org@parboxrestore
+\restore@parsettings
+}
+\makeatother
+
+\setbeamertemplate{frametitle continuation}{}
+
+\newcommand\matr[1]{\ensuremath{\boldsymbol{\mathbf{#1}}}}
+\newcommand\vect[1]{\ensuremath{\bm{#1}}}
+\newcommand\dint{\ensuremath{\int\displaylimits}}
