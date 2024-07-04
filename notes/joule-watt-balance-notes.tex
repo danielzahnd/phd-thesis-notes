@@ -971,6 +971,60 @@ The signals to process by the time interval analyzers are interference signals p
 \subsection{Required output}
 The required output of the time interval analyzer are the timestamps of zero-crossings for the interferometer signal of each of the three interferometers. Using these timestamps and knowing the wavelength of the used laser light, one can then calculate distances and velocities of the moving mirrors as visualized in \cref{fig:measurement_circuit} and \cref{fig:dataprocessing}.
 
+\subsection{Sine to square wave conversion}
+Essentially, the TIA counts zero-crossings of a signal. It can be adjusted/programmed such that it triggers to logic 1, if a certain threshold with a positive and/or negative flank is met. The available TIA IDQ ID900 however requires the slope $s(t)$ of a signal at trigger point $t$ to be larger than $\SI{50}{\volt\per\micro\second}$, i.e. $s(t) \geq \SI{50}{\volt\per\micro\second}$.
+
+In the case at hand, the expected velocity of the coil measured by an interferometer, whose signal is then planned to be processed by the TIA, is given by $v \approx \SI{1.3}{\milli\meter\per\second}$. Given the wavelength $\lambda = \SI{1550}{\nano\meter}$ this means, that the expected frequency of a signal to be processed by the TIA is given as $\nu = v/\lambda \approx \SI{840}{\hertz}$.
+
+Assuming now that the signal output of a photodetector will be a sine wave \begin{equation}
+	U(t) = U_0\sin(2\pi \nu t)
+\end{equation} with amplitude $U_0$ and frequency $\nu$, the slope $s(t)$ at a given time $t$ is calculated as \begin{equation}
+s(t) = \frac{\mathrm{d}U(t)}{\mathrm{d}t} = 2\pi \nu U_0\cos(2\pi\nu t).
+\end{equation} The average slope $\bar{s}_+$ for a window of positive time derivative of the signal can be calculated as \begin{align}\begin{aligned}
+\bar{s}_+ &= \frac{1}{t_2-t_1}\int_{t_1}^{t_2}s(t)\,\mathrm{d}t = 2\nu\int_{-1/4\nu}^{1/4\nu}2\pi\nu U_0\cos(2\pi\nu t)\,\mathrm{d}t \\ &= 2\nu U_0\left[\sin\left(2\pi\nu\frac{1}{4\nu}\right)-\sin\left(-2\pi\nu\frac{1}{4\nu}\right)\right]= 4\nu U_0.
+\end{aligned}\end{align} If a signal amplitude ov $U_0 = \SI{2}{\volt}$ is expected, the average increasing slope $\bar{s}_+$ is given by \begin{equation}
+\bar{s}_+ = 4\cdot \SI{840}{\hertz}\cdot \SI{2}{\volt} = \SI{6.72}{\milli\volt\per\micro\second}  \ll \SI{50}{\volt\per\micro\second}.
+\end{equation} The slope of the expected sine signal of the photodetector therefore has not nearly sufficient slope to be properly detected by the TIA input. The signal hence has to be preprocessed somehow to produce a steeper slope at a desired threshold value. This can be achieved by means of rectifying the sine signal to a square wave signal, which can be done using a so-called Schmitt trigger.
+
+\subsubsection{Schmitt trigger}
+A Schmitt trigger is a device leveraging an operational amplifier to trigger a sine wave like signal at a certain threshold, whereby the threshold has an associated hysteresis. This means that there are actually two thresholds; one $U_t^+$ for a positive and one $U_t^-$ for a negative flank.
+
+A Schmitt trigger can be built as inverting or non-inverting device. The advantage of the inverting Schmitt trigger is that the back-coupling does not affect the input signal $U_{in}$. Therefore, most often one uses the inverting setup, which is sometimes coupled with a signal inverter at the end to back-invert the outgoing signal from the Schmitt trigger. The visualization \cref{fig:schmitt_trigger} shows both types of Schmitt triggers, the non-inverting type \cref{fig:noninverting_schmitt_trigger} and the inverting implementation \cref{fig:inverting_schmitt_trigger}.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/noninverting_schmitt_trigger.pdf}
+		\caption{Non-inverting Schmitt trigger.}
+		\label{fig:noninverting_schmitt_trigger}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/inverting_schmitt_trigger.pdf}
+		\caption{Inverting Schmitt trigger.}
+		\label{fig:inverting_schmitt_trigger}
+	\end{subfigure}
+	\caption{Schemata of non-inverting and inverting Schmitt triggers.}
+	\label{fig:schmitt_trigger}
+\end{figure}
+Consider the non-inverting Schmitt trigger first. An operational amplifier always regulates its output such that $U_1 - U_- = 0$. Furthermore, the inputs draw no current. Given these two properties of an operational amplifier, one can write down \begin{equation}
+	\frac{U_{in}}{R_1} = \frac{U_{out}}{R_2} = I \quad \Leftrightarrow \quad U_{out} = \frac{R_2}{R_1}U_{in}.
+\end{equation} The trigger voltages $U_t^+$ and $U_t^-$ can be obtained by requiring that $U_{out} = \pm U_s$ for $U_{in} = U_t^\pm$. That is to say, that the output voltage goes to saturation, if either $U_t^+$ is surpassed or $U_t^-$ subpassed. Hence, one obtains \begin{equation}
+U_s = \frac{R_2}{R_1}U_t^+, \quad -U_s = \frac{R_2}{R_1}U_t^-
+\end{equation} and therefore \begin{equation}
+U_t^+ = \frac{R_1}{R_2}U_s, \quad U_t^- = -\frac{R_1}{R_2}U_s.
+\end{equation}
+
+With respect to the inverting Schmitt trigger, the equation \begin{equation}
+	\frac{U_r-U_{in}}{R_1} = -\frac{U_{out}-U_{in}}{R_2}=I \quad \Leftrightarrow \quad U_{out} = U_{in} - \frac{R_2}{R_1}(U_r-U_{in})
+\end{equation} follows. Again requiring that $U_{out} = \pm U_s$ for $U_{in} = U_t^\pm$, the equations \begin{equation}
+U_s = U_t^+-\frac{R_2}{R_1}(U_r - U_t^+), \quad -U_s = U_t^--\frac{R_2}{R_1}(U_r - U_t^-)
+\end{equation} follow and therefore
+\begin{equation}
+	U_t^+ = \frac{R_2U_r + R_1U_s}{R_2 + R_1}, \quad U_t^- = \frac{R_2U_r - R_1U_s}{R_2 + R_1}.
+\end{equation}
+
 \subsection{Experiment 1: Providing signal to TIA and getting timestamps}
 In order to take the available time interval analyzer into operating mode, a first preliminary experiment was carried out. This experiment consisted of providing a square pulsed signal of frequency $\nu = \SI{840}{\hertz}$ generated by a frequency generator to an input of the time interval analyzer. The time interval analyzer was programmed such that is acquired the timestamps of positive zero-crossings of the signal. The acquired timestamps can then expected to have a spacing of $\Delta t$ matching the provided frequency by means of the relation $\nu = 1/\Delta t$.
 \begin{figure}[h]
