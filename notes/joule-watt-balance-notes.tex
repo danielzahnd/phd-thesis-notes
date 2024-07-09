@@ -447,7 +447,75 @@ R_H = R_{xy} = \mathcal{R}_{xy} = \frac{h}{n_He^2},  \quad n_H \in \mathbb{N}
 		U_J = \frac{h}{2e}n_Jf_J, \quad n_J \in \mathbb{N},
 	\end{equation} where $h$ is the Planck constant, $e$ is the elementary charge and $f_J$ is the frequency of the microwave radiation used to irradiate the Josephson junction with.
 	
-	This section is concerned with a rigorous derivation of the above mentioned relation \cref{eq:josephsoneffect} from first principles of quantum mechanics and superconductivity.
+	This section is concerned with a heuristic derivation of the above mentioned relation \cref{eq:josephsoneffect} from first principles of quantum mechanics and superconductivity.
+
+\subsection{A two-state quantum system}
+As a first step to a heuristic derivation of the Josephson effect, two-state quantum systems need to be studied. A two-state quantum system is by definition two-dimensional, hence two basis vectors are sufficient to describe any vector occurring in this quantum system. 
+
+Let $|1\rangle$ and $|2\rangle$ denote the two basis vectors of the quantum system; thus, any state vector in the quantum system can be represented by means of \begin{equation}
+	\psi(t) = \psi_1(t)|1\rangle + \psi_2(t)|2\rangle.
+\end{equation} Hereby, $\psi_1(t)$ and $\psi_2(t)$ are time-dependent complex coefficients. An operator describing the energy of the system, namely the Hamilton operator $\matr{H}$, needs to be a 2 by 2 hermitian matrix. It must be a 2 by 2 matrix, because the Hilbert space of the system is two-dimensional. Furthermore, it must be hermitian because the expectation value of the Hamilton operator is the energy of the system and thus a physical variable. In quantum mechanics, the expectation value of an operator $\hat{\matr{Q}}$ representing a physical variable of a system is required to be real, which implies that the operator $\hat{\matr{Q}}$ must be hermitian. Operators $\hat{\matr{Q}}$ are said to be hermitian, if they are equal to their hermitian conjugate, which is defined as \begin{equation}
+\hat{\matr{Q}}^\dagger = \hat{\matr{Q}}^{\star\,\top}.
+\end{equation}
+
+Hence, one can write down the Hamilton operator $\hat{\matr{H}}$ of a two-state system as \begin{equation}
+	\hat{\matr{H}} = \begin{pmatrix}
+		\hat{H}_{11} & \hat{H}_{12} \\
+		\hat{H}_{21} & \hat{H}_{22}
+	\end{pmatrix}.
+\end{equation} Because of the required hermiticity, $\hat{H}_{11}, \hat{H}_{22} \in \mathbb{R}$ and $\hat{H}_{21} = \hat{H}_{12}^\star$ hold. Hereby $\hat{H}_{11}$ and $\hat{H}_{22}$ represent the energy of states $|1\rangle$ and $|2\rangle$, whereas $\hat{H}_{12}$ and $\hat{H}_{21}$ give information associated to the energy required to change from state $|1\rangle$ to $|2\rangle$ and vice versa. Now, the Schrödinger equation for the case at hand writes as \begin{equation}
+i\hbar \frac{\partial \psi(t)}{\partial t} = \hat{\matr{H}}\psi(t)
+\end{equation} and hence is only dependent on time $t$ in that case. Using the above definitions of the wave functions and the Hamilton operator, one arrives at \begin{equation}\label{eq:twostatequantumsystem}
+i\hbar\frac{\partial}{\partial t}\begin{pmatrix}
+	\psi_1(t) \\ \psi_2(t)
+\end{pmatrix} = \begin{pmatrix}
+\hat{H}_{11} & \hat{H}_{12} \\
+\hat{H}_{21} & \hat{H}_{22}
+\end{pmatrix}\begin{pmatrix}
+\psi_1(t) \\ \psi_2(t)
+\end{pmatrix},
+\end{equation} where $|1\rangle = (1,0)^\top$ and $|2\rangle = (0,1)^\top$ were used to ``simulate'' the orthogonality of $|1\rangle$ and $|2\rangle$.
+
+\subsection{Cooper pairs}
+Cooper pairs are the charge carriers of superconductivity. At low temperatures, electron-lattice interactions lead to an attractive force between electrons leading them to pair up to Cooper pairs, which are essentially two electrons bound together by means of electron-phonon interactions. Since electrons are fermions, a Cooper pair is a so-called composite boson; a boson, because its spin is either 0 or 1 and composite, because such bosons are comprised of two fermions. Hence, at low temperatures, all electrons in a material condense to Cooper pairs, which are all in the same quantum state in the extreme case. This effect is responsible for superconductivity and is also the reason, why all charge carriers in a superconducting material can be described by just one wave function.
+
+\subsection{The Josephson two-state quantum system}
+Consider now the two-state Josephson junction system depicted in \cref{fig:josephson_junction}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/josephson_junction.pdf}
+	\caption{Visalization of a Josephson junction.}
+	\label{fig:josephson_junction}
+\end{figure}
+With respect to \cref{eq:twostatequantumsystem}, the Schrödinger equation for the depicted quantum system is given by \begin{equation}
+i\hbar\frac{\partial}{\partial t}\begin{pmatrix}
+	\sqrt{n_1(t)}e^{i\phi_1(t)} \\ \sqrt{n_2(t)}e^{i\phi_2(t)}
+\end{pmatrix} = \begin{pmatrix}
+	\hat{H}_{11} & \hat{H}_{12} \\
+	\hat{H}_{21} & \hat{H}_{22}
+\end{pmatrix}\begin{pmatrix}
+	\sqrt{n_1(t)}e^{i\phi_1(t)} \\ \sqrt{n_2(t)}e^{i\phi_2(t)}
+\end{pmatrix},
+\end{equation} where the components of the Hamilton operator are yet to be determined. Now the components $\hat{H}_{11}$ and $\hat{H}_{22}$ are given by just the energy associated to states $\psi_1$ and $\psi_2$. Assuming that the Cooper pairs do not have any kinetic energy, the energy of these two states is solely given by the potential energy. The potential energy $W_{pot}$ of a particle of charge $q_s$ in an electric field $\vect{E} = -\vect{\nabla}\varphi$ subject to the potential difference $U_{diff} = \varphi(\vect{x}_1) -\varphi(\vect{x}_2)$ is given by \begin{equation}
+W_{pot} = \int_{\vect{x}_1}^{\vect{x}_2}\vect{F}\cdot \mathrm{d}\vect{x} = q_s\int_{\vect{x}_1}^{\vect{x}_2}\vect{E}\cdot\mathrm{d}\vect{x} = -q_s\int_{\vect{x}_1}^{\vect{x}_2}\vect{\nabla}\varphi\cdot\mathrm{d}\vect{x} = qU_{diff},
+\end{equation} where $\varphi$ is the electric potential. In the system at hand, the potential difference between both superconductors is $U_J$, whereas one can define zero potential at $U_J/2$. This means, that the Cooper pairs in superconductor 1 in state $\psi_1$ have potential energy $\hat{H}_{11} = -q_sU_J/2$, whereas the Cooper pairs in superconductor 2 in state $\psi_2$ have energy $\hat{H}_{22}= q_sU_J/2$. Furthermore, the energy associated to a change $\psi_1 \leftrightarrow \psi_2$ is denoted by $K$, so one has $\hat{H}_{12} = \hat{H}_{21} = K$. Hence, the Schrödinger equation for the system with $q_s = -2e$ is now \begin{align}\begin{aligned}
+i\hbar\frac{\partial}{\partial t}\begin{pmatrix}
+	\sqrt{n_1(t)}e^{i\phi_1(t)} \\ \sqrt{n_2(t)}e^{i\phi_2(t)}
+\end{pmatrix} &= \begin{pmatrix}
+	-\tfrac{q_sU_J}{2} & K \\
+	K & \tfrac{q_sU_J}{2}
+\end{pmatrix}\begin{pmatrix}
+	\sqrt{n_1(t)}e^{i\phi_1(t)} \\ \sqrt{n_2(t)}e^{i\phi_2(t)}
+\end{pmatrix}\\
+ &= \begin{pmatrix}
+ 	eU_J & K \\
+ 	K & -eU_J
+ \end{pmatrix}\begin{pmatrix}
+ 	\sqrt{n_1(t)}e^{i\phi_1(t)} \\ \sqrt{n_2(t)}e^{i\phi_2(t)}
+ \end{pmatrix}.
+\end{aligned}\end{align}
+
+\subsubsection{The Josephson effect}
 	
 \chapter{Superconductivity}
 Superconductivity is a peculiar state of matter, in which an electrical current through the material experiences no resistance. Superconducting materials are used in many technological and science applications, among which also the watt and joule balances take their place. The latter applications make use of so-called Josephson junctions, which essentially are voltage standards connecting a measured voltage to units of the Planck constant $h$. It is therefore integral to understanding the watt and joule balance methods in detail to consider some main topics of superconductivity.
