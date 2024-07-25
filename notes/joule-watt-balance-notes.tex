@@ -498,7 +498,7 @@ i\hbar\frac{\partial}{\partial t}\begin{pmatrix}
 \end{pmatrix},
 \end{equation} where the components of the Hamilton operator are yet to be determined. Now the components $\hat{H}_{11}$ and $\hat{H}_{22}$ are given by just the energy associated to states $\psi_1$ and $\psi_2$. Assuming that the Cooper pairs do not have any kinetic energy, the energy of these two states is solely given by the potential energy. The potential energy $W_{pot}$ of a particle of charge $q_s$ in an electric field $\vect{E} = -\vect{\nabla}\varphi$ subject to the potential difference $U_{diff} = \varphi(\vect{x}_1) -\varphi(\vect{x}_2)$ is given by \begin{equation}
 W_{pot} = \int_{\vect{x}_1}^{\vect{x}_2}\vect{F}\cdot \mathrm{d}\vect{x} = q_s\int_{\vect{x}_1}^{\vect{x}_2}\vect{E}\cdot\mathrm{d}\vect{x} = -q_s\int_{\vect{x}_1}^{\vect{x}_2}\vect{\nabla}\varphi\cdot\mathrm{d}\vect{x} = qU_{diff},
-\end{equation} where $\varphi$ is the electric potential. In the system at hand, the potential difference between both superconductors is $U_J$, whereas one can define zero potential at $U_J/2$. This means, that the Cooper pairs in superconductor 1 in state $\psi_1$ have potential energy $\hat{H}_{11} = -q_sU_J/2$, whereas the Cooper pairs in superconductor 2 in state $\psi_2$ have energy $\hat{H}_{22}= q_sU_J/2$. Furthermore, the energy associated to a change $\psi_1 \leftrightarrow \psi_2$ is denoted by $K$, so one has $\hat{H}_{12} = \hat{H}_{21} = K$. Hence, the Schrödinger equation for the system with $q_s = -2e$ is now \begin{align}\begin{aligned}
+\end{equation} where $\varphi$ is the electric potential. In the system at hand, the potential difference between both superconductors is $U_J$, whereas one can define zero potential at $U_J/2$. This means, that the Cooper pairs in superconductor 1 in state $\psi_1$ have potential energy $\hat{H}_{11} = -q_sU_J/2$, whereas the Cooper pairs in superconductor 2 in state $\psi_2$ have energy $\hat{H}_{22}= q_sU_J/2$. Furthermore, the energy associated to a change $\psi_1 \leftrightarrow \psi_2$ is denoted by $K$, so one has $\hat{H}_{12} = \hat{H}_{21} = K$. Hence, the Schrödinger equation for the system with $q_s = -2e$ is now \begin{align}\begin{aligned}\label{eq:josephson_schroedinger_equation}
 i\hbar\frac{\partial}{\partial t}\begin{pmatrix}
 	\sqrt{n_1(t)}e^{i\phi_1(t)} \\ \sqrt{n_2(t)}e^{i\phi_2(t)}
 \end{pmatrix} &= \begin{pmatrix}
@@ -515,7 +515,43 @@ i\hbar\frac{\partial}{\partial t}\begin{pmatrix}
  \end{pmatrix}.
 \end{aligned}\end{align}
 
+Taking \cref{eq:josephson_schroedinger_equation} as a starting point, the two so-called Josephson relations can be derived as follows; for simplicity, the explicit notation of time dependence of the charge carrier densities and phases will be ignored. Expanding the first component of \cref{eq:josephson_schroedinger_equation} yields the equation \begin{equation}\label{eq:josephson_eq_1}
+	\dot{\sqrt{n_1}} + i\sqrt{n_1}\dot{\phi}_1 = \frac{1}{i\hbar}\left(eU_J\sqrt{n_1}+ K\sqrt{n_2}e^{i\theta}\right),
+\end{equation} where the so-called Josephson phase $\theta$ was defined as $\theta \doteq \phi_2-\phi_1$. The complex conjugate of this equation is given as \begin{equation}\label{eq:josephson_eq_1_conj}
+\dot{\sqrt{n_1}} - i\sqrt{n_1}\dot{\phi}_1 = -\frac{1}{i\hbar}\left(eU_J\sqrt{n_1}+ K\sqrt{n_2}e^{-i\theta}\right).
+\end{equation} Adding up \cref{eq:josephson_eq_1} and \cref{eq:josephson_eq_1_conj} and simplifying the terms using the complex representation of the trigonometric sine function, one obtains \begin{equation}
+\dot{n}_1 = 2K\frac{\sqrt{n_1n_2}}{\hbar}\sin(\theta),
+\end{equation} which is an equation that describes the time evolution of charge carrier density in the first superconductor of the Josephson junction. Conversely, subtracting \cref{eq:josephson_eq_1_conj} from \cref{eq:josephson_eq_1}, one furthermore gets the equation \begin{equation}
+\dot{\phi}_1 = -\frac{1}{\hbar}\left(eU_J + K\sqrt{\frac{n_2}{n_1}}\cos(\theta)\right).
+\end{equation} Now, expanding the second component of \cref{eq:josephson_schroedinger_equation}, the equation \begin{equation}\label{eq:josephson_eq_2}
+\dot{\sqrt{n_2}} + i\sqrt{n_2}\dot{\phi}_2 = \frac{1}{i\hbar}\left(-eU_J\sqrt{n_2} + K\sqrt{n_1}e^{-i\theta}\right)
+\end{equation} results, which has the complex conjugate \begin{equation}\label{eq:josephson_eq_2_conj}
+\dot{\sqrt{n_2}} - i\sqrt{n_2}\dot{\phi}_2 = -\frac{1}{i\hbar}\left(-eU_J\sqrt{n_2} + K\sqrt{n_1}e^{i\theta}\right).
+\end{equation} Adding together \cref{eq:josephson_eq_2} with \cref{eq:josephson_eq_2_conj} yields an equation for the time evolution of the charge carrier density in the second superconductor as \begin{equation}
+\dot{n}_2 = -2K\frac{\sqrt{n_1n_2}}{\hbar}\sin(\theta),
+\end{equation} where again the complex representation of the sine function was used. Furthermore subtracting \cref{eq:josephson_eq_2_conj} from \cref{eq:josephson_eq_2} gives an additional equation for the phase evolution of state $\psi_2$ as \begin{equation}
+\dot{\phi}_2 = \frac{1}{\hbar}\left(eU_J-K\sqrt{\frac{n_1}{n_2}}\cos(\theta)\right),
+\end{equation} where the complex identity for the cosine function was employed.
+
 \subsubsection{The Josephson effect}
+Consider a Josephson junction as depicted in \cref{fig:josephson_junction}, where the time evolution of the phases $\phi_1$, $\phi_2$ and the charge carrier densities $n_1$ and $n_2$ are given by \begin{equation}
+	\dot{\phi}_1 = -\frac{1}{\hbar}\left(eU_J + K\sqrt{\frac{n_2}{n_1}}\cos(\theta)\right), \quad  \dot{\phi}_2 = \frac{1}{\hbar}\left(eU_J-K\sqrt{\frac{n_1}{n_2}}\cos(\theta)\right)
+\end{equation} and \begin{equation}
+\dot{n}_1 = 2K\frac{\sqrt{n_1n_2}}{\hbar}\sin(\theta), \quad \dot{n}_2 = -2K\frac{\sqrt{n_1n_2}}{\hbar}\sin(\theta).
+\end{equation} Hereby, $K$ is a measure for the probability, that a charge carrier from superconductor 1 tunnels to superconductor 2 or vice versa through the insulating barrier in between the superconductors; furthermore $\theta = \phi_2-\phi_1$ is the so-called Josephson phase. The time derivative of the Josephson phase can be calculated as \begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}t}\theta = \dot{\phi}_2 - \dot{\phi}_1 = \frac{eU_J}{\hbar} - \frac{K}{\hbar}\sqrt{\frac{n_1}{n_2}}\cos(\theta) + \frac{eU_J}{\hbar} + \frac{K}{\hbar}\sqrt{\frac{n_2}{n_1}}\cos(\theta)\approx  \frac{2e}{\hbar}U_J,
+\end{equation} where the assumption $n_1 \approx n_2$ was used in the last step, meaning that the charge carrier densities in superconductors 1 and 2 are approximately the same. This gives rise to the so-called second Josephson equation \begin{equation}\label{eq:2nd_josephson_equation}
+\frac{\mathrm{d}\theta(t)}{\mathrm{d}t} = \frac{2eU_J(t)}{\hbar}.
+\end{equation} Now, a second step consists of relating a change in charge carrier density of either superconductor 1 or 2 to an electric current flowing across the insulating barrier, since this is the only possibility allowing $n_1$ or $n_2$ to change. Given that the charge carriers cannot flow to any other region than either from superconductor 1 to superconductor 2 or vice versa, $\dot{n}_1 = -\dot{n}_2$ must hold. One can now define a so-called Josephson current $I_J(t)$ flowing across the insulating barrier between both superconductors to be proportional to the change in charge carrier density, namely $I_J(t) \propto \dot{n}_1(t)$. Using the above expression for $\dot{n}_1$ and defining the proportionality constant as the critical current $I_c$, one obtains the so-called first Josephson equation \begin{equation}\label{eq:1st_josephson_equation}
+I_J(t) = I_c\sin(\theta(t)).
+\end{equation}
+
+If one now irradiates a Josephson junction with microwave radiation of angular frequency $n_J\omega_J$ with $n_J \in \mathbb{N}$, the Josephson phase $\theta(t)$ will evolve according to this frequency. Essentially, this means \begin{equation}
+	\frac{\mathrm{d}\theta(t)}{\mathrm{d}t} = n_J\omega_J.
+\end{equation} Inserting this into the second Josephson equation \cref{eq:2nd_josephson_equation}, one obtains \begin{equation}
+n_J\omega_J = \frac{2eU_J}{\hbar} = 2\pi n_Jf_J \quad \Leftrightarrow \quad U_J = \frac{h}{2e}n_Jf_J,
+\end{equation} which is the final expression for the DC-components of the AC-Josephson effect.
+
 	
 \chapter{Superconductivity}
 Superconductivity is a peculiar state of matter, in which an electrical current through the material experiences no resistance. Superconducting materials are used in many technological and science applications, among which also the watt and joule balances take their place. The latter applications make use of so-called Josephson junctions, which essentially are voltage standards connecting a measured voltage to units of the Planck constant $h$. It is therefore integral to understanding the watt and joule balance methods in detail to consider some main topics of superconductivity.
@@ -523,7 +559,7 @@ Superconductivity is a peculiar state of matter, in which an electrical current 
 \section{Expulsive property of superconductors}
 
 \subsection{Expulsion property}
-A superconductor is a material, whose resistivity drops to zero below a certain cricical temperature $T_c$. If a material is in superconducting state, its charge carriers - namely the electrons - are in a so-called Cooper pair quantum state, which experience no resistance along their way through the material. The mechanism leading to the formation of Cooper pairs is very complex and in most cases can only be understood phenomenologically. 
+A superconductor is a material, whose resistivity drops to zero below a certain critical temperature $T_c$. If a material is in superconducting state, its charge carriers - namely the electrons - are in a so-called Cooper pair quantum state, which experience no resistance along their way through the material. The mechanism leading to the formation of Cooper pairs is very complex and in most cases can only be understood phenomenologically. 
 
 A superconductor may phenomenologically be characterized by means of two postulates, which need to be fullfilled for a certain material to be called a superconductor:
 \begin{enumerate}
@@ -803,9 +839,9 @@ m = \underbrace{\frac{U_d(z_w)}{v(z_w)}}_{G_e(z_w)}\underbrace{\frac{I_s(z_w)}{g
 \end{equation}
 
 \subsection{Data processing example}
-The theory for data processing as described in \cref{sec:dataprocessingtheory_v1} was implemented in \verb|Python|. This led to results as seen in \cref{fig:example_u_v} and \cref{fig:example_g_i} for a total of 10 measurement series. The blue points indicate the values obtained by the implemented \verb|Python| routine, whereas the red points denote the validation values which were obtained in \cite{Eichenberger_2022}. Note, that the tidal corrections have not yet been implemented, which could lead to an improvement of the calculated $G_m$ values with respect to the reference values which are corrected for tidal effects.
+The theory for data processing as described in \cref{sec:dataprocessingtheory_v1} was implemented in \verb|Python|. This led to results as seen in \cref{fig:example_u_v} and \cref{fig:example_g_i} for a total of 10 measurement series. The blue points indicate the values obtained by the implemented \verb|Python| routine, whereas the red points denote the validation values which were obtained in \cite{Eichenberger_2022}. Note, that tidal corrections in the calculation of the $G_m$ factor were considered by using the \verb|tidegravity| package available to \verb|Python|. For each series of 3 weightings, the tide correction at the time of the middle weighting was applied to correct the gravitational acceleration factor $g$.
 
-From the pictured blue and red points, one can calculate a mass $m$ using \cref{eq:massequation_G_factors}. Averaging over the blue points (calculated by \verb|Python| routine) leads to a mass of $m_c = \SI{1.00000066185}{\kilogram} = \SI{1}{\kilogram} + \SI{661.85}{\micro\gram}$, whereas the red points (validation values from \cite{Eichenberger_2022}) lead to a mass $m_r = \SI{1.00000066189}{\kilogram} = \SI{1}{\kilogram} + \SI{661.89}{\micro\gram}$. The difference $\Delta m_{c,r}$ between the calculated value $m_c$ of the described data processing routine and the value $m_r$ obtained from the reference data processing is therefore $\Delta m_{c,r} = |m_c-m_r| \approx \SI{40}{\nano\gram}$, which is of relative order $10^{-11}$.
+From the pictured blue and red points, one can calculate a mass $m$ using \cref{eq:massequation_G_factors}. Averaging over the blue points (calculated by \verb|Python| routine) leads to a mass of $m_c = \SI{1.00000072062}{\kilogram} = \SI{1}{\kilogram} + \SI{720.62}{\micro\gram}$, whereas the red points (validation values from \cite{Eichenberger_2022}) lead to a mass $m_r = \SI{1.00000066189}{\kilogram} = \SI{1}{\kilogram} + \SI{661.89}{\micro\gram}$. The difference $\Delta m_{c,r}$ between the calculated value $m_c$ of the described data processing routine and the value $m_r$ obtained from the reference data processing is therefore $\Delta m_{c,r} = |m_c-m_r| \approx \SI{60}{\micro\gram}$, which is of relative order $10^{-8}$.
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.49\textwidth}
@@ -821,9 +857,9 @@ From the pictured blue and red points, one can calculate a mass $m$ using \cref{
 		\caption{Obtained values for $G_m =g/I_s$.}
 		\label{fig:example_g_i}
 	\end{subfigure}
-	\caption{Comparison of values for $G_e$ and $G_m$ as obtained by the described procedure in \cref{sec:dataprocessingtheory_v1} to the values presented in \cite{Eichenberger_2022}. The datapoints represent the results from 10 measurement series, which consist of 3 weightings (neg-pos-neg or pos-neg-pos) and 10 up-downs each. Note, that tide corrections have not yet been implemented so far and that the shown values for the blue points hence are not corrected for tidal effects.}
+	\caption{Comparison of values for $G_e$ and $G_m$ as obtained by the described procedure in \cref{sec:dataprocessingtheory_v1} to the values presented in \cite{Eichenberger_2022}. The datapoints represent the results from 10 measurement series, which consist of 3 weightings (neg-pos-neg or pos-neg-pos) and 10 up-downs each.}
 \end{figure}
-Thus, one can conclude that the reported \verb|Python| implementation\footnote{The most recent code can be found in this folder (accessible only within the METAS network): \url{\\METASFS01.AD.METAS\\HOME$\\OFFICE\\ZADA\\PhD Daniel Zahnd\\Joule-watt balance project\\Python code\\Kibble balance test evaluation data}.} agrees well with the data processing routine used for the publication \cite{Eichenberger_2022}.
+Thus, one can conclude that the reported \verb|Python| implementation\footnote{The most recent code can be found here: \url{https://github.com/danielzahnd/phd-thesis-notes/tree/main/code}.} agrees well with the data processing routine used for the publication \cite{Eichenberger_2022}.
 
 \FloatBarrier
 
@@ -1017,7 +1053,7 @@ The refractive index of air can be calculated using the so-called Edlén equatio
 	n_{air} = n_{air}(T, H_R, \textrm{CO}_2, P).
 \end{equation}
 
-\section{Practical implementation of the 3-interferometer technique}
+\section{Practical implementation of the 3-interfero-meter technique}
 Implementing the 3-interferometer technique to the current METAS Kibble balance setup requires additional time interval analyzers to count the fringes and the associated time intervals between zero-crossings of the interferometer signals. At METAS, an IDQ ID900 time controller\footnote{See \cite{IDQ.2018} for further information.} is available to take over that task. It has however to be studied yet, how this can be achieved. Furthermore, also more than the currently available components such as beam-splitters and optical fibres are necessary.
 
 \subsection{Measurement circuit}
@@ -1040,7 +1076,7 @@ The signals to process by the time interval analyzers are interference signals p
 The required output of the time interval analyzer are the timestamps of zero-crossings for the interferometer signal of each of the three interferometers. Using these timestamps and knowing the wavelength of the used laser light, one can then calculate distances and velocities of the moving mirrors as visualized in \cref{fig:measurement_circuit} and \cref{fig:dataprocessing}.
 
 \subsection{Sine to square wave conversion}
-Essentially, the TIA counts zero-crossings of a signal. It can be adjusted/programmed such that it triggers to logic 1, if a certain threshold with a positive and/or negative flank is met. The available TIA IDQ ID900 however requires the slope $s(t)$ of a signal at trigger point $t$ to be larger than $\SI{50}{\volt\per\micro\second}$, i.e. $s(t) \geq \SI{50}{\volt\per\micro\second}$.
+Essentially, the TIA counts zero-crossings of a signal. It can be programmed such that it triggers to logic 1, if a certain threshold with a positive and/or negative flank is met. The available TIA IDQ ID900 however requires the slope $s(t)$ of a signal at trigger point $t$ to be larger than $\SI{50}{\volt\per\micro\second}$, i.e. $s(t) \geq \SI{50}{\volt\per\micro\second}$.
 
 In the case at hand, the expected velocity of the coil measured by an interferometer, whose signal is then planned to be processed by the TIA, is given by $v \approx \SI{1.3}{\milli\meter\per\second}$. Given the wavelength $\lambda = \SI{1550}{\nano\meter}$ this means, that the expected frequency of a signal to be processed by the TIA is given as $\nu = v/\lambda \approx \SI{840}{\hertz}$.
 
@@ -1138,6 +1174,62 @@ This third experiment consisted of supplying to the time interval analyzer input
 \end{figure}
 
 If one denotes the standard deviation of the dataset by $\sigma_{\bar{\nu}}$, one can conclude that most of the datapoints are indeed within a $2\sigma_{bar{\nu}}$ range around the mean value $\bar{\nu}$, thus indicating that the noise is Gaussian in nature. One can also perceive, that the frequency does seem to fluctuate around a constant value of $\bar{\nu}$; however, a slight tendency of the noise to increase with time can be perceived. In the prevalent case, a relative uncertainty of $\sigma_{\bar{\nu}}/\bar{\nu} \approx 1.79\cdot 10^{-5}$ is obtained.
+
+
+\section{Double pendulum}
+ % Explain, why the double pendulum for the Kibble balance is relevant.
+Consider a coupled double pendulum system as depicted in \cref{fig:doublependulum}. The double pendulum consists of two masses $m_1$ and $m_2$ restricted to move only in the x-z-plane. Mass $m_1$ pivots frictionless around point $(0, 0)^\top$ separated by length $l_1$, whereas $m_2$ pivots frictionless around point $(x_1,z_1)^\top$ separated by length $l_2$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/doublependulum.pdf}
+	\caption{Visualization of a coupled double pendulum system.}
+	\label{fig:doublependulum}
+\end{figure}
+The positions of both masses $m_1$ and $m_2$ hence can be described by two two-dimensional vectors $\vect{r}_1 = (x_1,y_1)^\top$ and $\vect{r}_2 = (x_2, z_2)^\top$. One can write down expressions for both vectors as \begin{equation}
+	\vect{r}_1 = \begin{pmatrix}
+	l_1\sin(\alpha_1) \\ -l_1\cos(\alpha_1)
+	\end{pmatrix} \quad \text{and} \quad \vect{r}_2 = \begin{pmatrix}
+	l_1\sin(\alpha_1) + l_2\sin(\alpha_2) \\ -l_1\cos(\alpha_1) - l_2\cos(\alpha_2)
+	\end{pmatrix}.
+\end{equation} These vectors are generally time dependent, but for simplicity explicit notation will be left away in most cases in the following material. If instructive however, time dependencies are explicitly written. Now, the kinetic energy $T$ of the double pendulum system is given by \begin{align}
+\begin{aligned}
+	T &= \frac{1}{2}\left(m_1(\dot{x}_1^2 + \dot{z}_1^2) + m_2(\dot{x}_2^1 + \dot{z}_2^2)\right) \\
+	&= \left(\frac{m_1}{2}+\frac{m_2}{2}\right)l_1^2 \dot{\alpha}_1^2 + \frac{m_2}{2}l_2^2\dot{\alpha}_2^2 + m_2l_1l_2\dot{\alpha}_1\dot{\alpha}_2\cos(\alpha_1-\alpha_2),
+\end{aligned}
+\end{align} where the cosine addition theorem $\cos(x \pm y) = \cos(x)\cos(y) \mp \sin(x)\sin(y)$ was employed. The potential energy $V$ stored in the pendulum system however is given by \begin{align}\begin{aligned}
+V &= m_1gz_1 + m_2gz_2  \\
+ &= -(m_1+m_2)gl_1\cos(\alpha_1) - m_2gl_2\cos(\alpha_2).
+\end{aligned}\end{align}
+
+Simplifying the kinetic energy expression $T$ and the potential energy term $V$ using the small angle approximation \begin{equation}
+	\cos(x) \approx 1 - \frac{x^2}{2}, \quad x \ll 1,
+\end{equation} one obtains the simplified forms of kinetic and potential energy as \begin{equation}
+T \approx \left(\frac{m_1}{2}+ \frac{m_2}{2}\right)l_1^2\dot{\alpha}_1^2 + \frac{m_2}{2}l_2^2\dot{\alpha}_2^2 + m_2l_1l_2\dot{\alpha}_1\dot{\alpha}_2
+\end{equation} and \begin{equation}
+V \approx -(m_1+m_2)gl_1\left(1+\frac{\alpha_1^2}{2}\right) - m_2gl_2\left(1-\frac{\alpha_2^2}{2}\right),
+\end{equation} where terms higher than order $\mathcal{O}(\alpha_i^2)$ or $\mathcal{O}(\dot{\alpha}_i^2)$ for $i \in \{1,2\}$ were neglected. Thus, a simplified Lagrangian $\mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2)$ for the double pendulum system can be written down as \begin{align}
+\begin{aligned}
+	\mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2) &= T-V \\
+	&\approx \left(\frac{m_1}{2}+ \frac{m_2}{2}\right)l_1^2\dot{\alpha}_1^2  \frac{m_2}{2}l_2^2\dot{\alpha}_2^2 + m_2l_1l_2\dot{\alpha}_1\dot{\alpha}_2 \\ &\quad + (m_1+m_2)gl_1\left(1+\frac{\alpha_1^2}{2}\right) + m_2gl_2\left(1-\frac{\alpha_2^2}{2}\right).
+\end{aligned}
+\end{align} Now, the Euler-Lagrange equations can be obtained for the system under consideration by calculating \begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial \mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2)}{\partial \dot{\alpha}_i} = \frac{\partial \mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2)}{\partial \alpha_i}, \quad i \in \{1,2\}.
+\end{equation}
+
+\subsection{Autocollimators}
+Autocollimators can be used to measure angular movements in experimental setups. In principle, they consist of a light source, whose light passes through a beam splitter. One part of the light is reflected upon a position sensitive detector, the other half is brought through a lens parallelizing the light beams. Those light beams then travel to the target consisting of a flat mirror. If this mirror is not tilted with respect to the incident beams, the beams are reflected exactly vertically towards the lens, which focuses the beams to the focal point located on the plane of the position sensitive detector. If the target mirror however is tilted at angle $\alpha$, the incident and reflected beam are at angle $2\alpha$. The reflected beams pass again to the lens focalizing them in the focal plane. This results in two points on the focal plane, one point located at the default position serving as the reference point and a second point at distance $d$ from the reference point. This situation is depicted in \cref{fig:autocollimator}.
+\begin{figure}[h]
+	 \centering
+	 \includegraphics[width=0.75\textwidth]{figures/autocollimator.pdf}
+	 \caption{Working principle of an autocollimator.}
+	 \label{fig:autocollimator}
+\end{figure}
+The angle $\alpha$ can be finally calculated as \begin{equation}
+	\tan(2\alpha) = \frac{d}{f},
+\end{equation} where $f$ is the focal length of the lens used in the autocollimator setup. If the measured angles are small, the approximation $\tan(x) \approx x$ can be used; thus one has \begin{equation}
+\alpha \approx \frac{d}{2f}.
+\end{equation}
+
 
 \chapter{Joule balance}
 \section{Introduction}
