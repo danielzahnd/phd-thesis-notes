@@ -605,14 +605,14 @@ The so-called London equations are phenomenological equations for the descriptio
 
 Let the mass and charge of charge carriers in superconducting state be denoted by $m_s$ and $q_s$. From the Lorentz force equation, one obtains the equation of motion for such a charge carrier as \begin{equation}
 	m_s \frac{\mathrm{d}\vect{v}}{\mathrm{d}t} = q_s\vect{E},
-\end{equation} since $\vect{B} = 0$. From the theory of superconductivity it is known, that the charge carriers are so-called Cooper pairs, which are a compound of two electrons; thus $m_s = 2m_e$ and $q_s = -2e$. Let furthermore $n_{e,s}$ be the so-called superfluid density, which is defined as the density of electrons in a superconducting state. The density of charge carriers $n_s$ is a superconducting state is thus given by $n_s = n_{e,s}/2$. Furthermore, one can define the supercurrent $\vect{j}_s$ as the product of bulk velocity of charge carriers with the charge $q_s$ and the density $n_s$ of charge carriers, thus \begin{equation}
+\end{equation} since $\vect{B} = 0$. From the theory of superconductivity it is known, that the charge carriers are so-called Cooper pairs, which are a compound of two electrons; thus $m_s = 2m_e$ and $q_s = -2e$. Let furthermore $n_{e,s}$ be the so-called superfluid density, which is defined as the density of electrons in a superconducting state. The density of charge carriers $n_s$ is a superconducting state is thus given by $n_s = n_{e,s}/2$. Furthermore, one can define the supercurrent $\vect{j}_s$ as the product of bulk velocity of charge carriers with the charge $q_s$ and the density $n_s$ of charge carriers, thus \begin{equation}\label{eq:supercurrent_definition}
 \vect{j}_s = n_sq_s\vect{v} = -n_{e,s}e\vect{v}.
 \end{equation} Inserting this expression into the above equation of motion, the first London equation is obtained:
 \begin{equation}
 	\frac{\mathrm{d}\vect{j}_s}{\mathrm{d}t} = \frac{e^2 n_{e,s}}{m_e}\vect{E}.
 \end{equation} In normal materials, $\vect{E} = 0$ means that there cannot be any current. In superconducting materials however, $\vect{E} = 0$ only means $\vect{j}_s = \text{const.},$ as one can see from the first London equation. Taking the curl of the first London equation, applying the third Maxwell equation and requiring $\partial \vect{j}_s/\partial t = \mathrm{d}\vect{j}_s/\mathrm{d}t$, one obtains the second London equation as \begin{equation}
 \vect{\nabla}\times \vect{j}_s = -\frac{e^2n_{e,s}}{m_e}\vect{B}.
-\end{equation} Experimentally, it is seen that near only near the surface of superconductor does the field $\vect{B}$ become nonzero, which according to the second London equation means that the supercurrent $\vect{j}_s$ does only flow in the surface regions of the material. By means of using a scalar and vector potentials $\phi$ and $\vect{A}$ and writing $\vect{B} = \vect{\nabla}\times \vect{A}$ and $\vect{E} = -\vect{\nabla}\phi - \frac{\partial \vect{A}}{\partial t}$ one can combine both London equations to one equation \begin{equation}
+\end{equation} Experimentally, it is seen that near only near the surface of superconductor does the field $\vect{B}$ become nonzero, which according to the second London equation means that the supercurrent $\vect{j}_s$ does only flow in the surface regions of the material. By means of using a scalar and vector potentials $\phi$ and $\vect{A}$ and writing $\vect{B} = \vect{\nabla}\times \vect{A}$ and $\vect{E} = -\vect{\nabla}\phi - \frac{\partial \vect{A}}{\partial t}$ one can combine both London equations to one equation \begin{equation}\label{eq:supercurrent_density_classical_london}
 \vect{j}_s = -\frac{e^2n_{e,s}}{m_e}\vect{A}.
 \end{equation} Since $\phi$ and $\vect{A}$ can be gauged and the London equations are not gauge invariant, one needs to chose a gauge that matches the requirements of the London equations. The first London equation requires that $\vect{\nabla}\phi=0$ to be fulfilled. Secondly, the second London equation demands $\vect{\nabla}\cdot \vect{A} = 0$, since the continuity equation $\vect{\nabla}\cdot \vect{j} = \partial_t \rho = 0$ requires $\vect{\nabla}\cdot \vect{j} = 0$ whenever one has a constant charge density with respect to time in a material. In a superconducting material described by the London equations, such a constant charge density is given.
 
@@ -674,7 +674,35 @@ j_{s,y}(x) = -j_{s,0}e^{-z/\lambda_L}, \quad \vect{j}_s = \begin{pmatrix}
 \end{pmatrix},
 \end{equation} where $j_{s,0} \doteq B_0/(\mu_0\lambda_L)$ was defined as the supercurrent at $z=0$. Thus one can conclude, that both the magnetic field aswell as the supercurrent are directed as seen in \cref{fig:superconductor_example} and drop exponentially with depth $z$ into the superconductor, whereby $\lambda_L$ is the characteristic distance for which the magnetic field and the supercurrent drop by $1/e$. The behaviour of the supercurrent and the magnetic field is shown in the plot \cref{fig:superconductor_example_plot}.
 
-% Go on with p. 12 of notes
+\subsection{The levitation effect}
+Consider some permanent magnet with magnetic field $\vect{B}$ placed above a superconducting plate of thickness $D \ll \lambda_L$, where $\lambda_L$ is the London penetration depth, which is a measure on how deep a magnetic field can penetrate a superconductor. Superconductors have the property to not only exhibit zero electrical resistance at $T < T_c$, but also to expel all magnetic fields from all regimes of depth $d > \lambda_L$ inside the material.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/meissner-ochsenfeld.pdf}
+	\caption{Visualization of the Meissner-Ochsenfeld effect for a levitating permanent magnet placed above a superconductor.}
+	\label{fig:meissner-ochsenfeld}
+\end{figure}
+
+Now, according to electromagnetic induction, moving a conductor in a magnetic field $\vect{B}$ induces a voltage and hence a current in said conductor, which produces a magnetic field of opposite direction as $\vect{B}$. Hence, there acts an expellant force $\vect{F}_{exp}$ between the magnet producing the magnetic field $\vect{B}$ and the induced magnetic field in the conductor. In the case of the depicted situation in \cref{fig:meissner-ochsenfeld}, one has a permanent magnet placed above a superconductor. As in the case with a normal conductor, bringing the permanent magnet near the superconductor induces a voltage and hence a current in the superconductor in a surface layer of thickness $\lambda_L$. Compared to the case with a normal conductor however, the induced current does not dissipate over time in the superconductor, because it experiences no resistance. Hence, the repellant magnetic field produced by the induced currents in the superconductor are sustained as long as the material remains superconducting, i.e. $T < T_c$. In the case of superconducting levitation - also known as quantum levitation due to the quantum effects giving rise to superconductivity - there will be an equilibrium between the expellant force $\vect{F}_{exp}$ and the gravitational force $\vect{F}_{grav}$ acting upon the placed permanent magnet, i.e. $\vect{F}_{exp} = -\vect{F}_{grav}$. As long as the superconductor remains superconducting, the situation remains ``locked''.
+
+\subsection{Extension to the quantum realm}
+Assuming that the charge carriers responsible for superconductivity can be described by a wave function \begin{equation}
+	\Psi(\vect{r}) = \sqrt{\frac{n_s}{N_s}}e^{-i\theta(\vect{r})},
+\end{equation} Landau theory of superconductivity can be linked to quantum mechanics. Hereby, $N_s$ is the total number of charge carriers (Cooper pairs) in the superconducting material. This equation means that to every charge carrier in the superconducting state the same phase $\theta(\vect{r})$ can be assigned. This is in fact experimentally true, but very surprising. First, one can check if this wave function fulfills the requirements for a quantum mechanical wave function, namely the normalization condition. One hence calculates \begin{equation}
+	\int_{\mathbb{R}^3}|\Psi(\vect{r})|^2\,\mathrm{d}^3r = \frac{1}{N_s}\int_{\mathbb{R}^3}n_s\,\mathrm{d}^3r = 1.
+\end{equation}
+
+Now, the expectation value $\vect{p}$ of the momentum operator $\hat{\vect{p}} = -i\hbar\vect{\nabla}$ is then calculated as \begin{align}\begin{aligned}\label{eq:momentum_expectation_value_cooper_pairs}
+	\vect{p} = \langle \hat{\vect{p}}\rangle &= \langle \Psi|-i\hbar\vect{\nabla}|\Psi\rangle = -i\hbar\frac{1}{N_s}\int_{\mathbb{R}^3}n_s e^{i\theta(\vect{r})}\vect{\nabla}e^{-i\theta(\vect{r})}\,\mathrm{d}^3r \\ &= -\frac{\hbar}{N_s}\int_{\mathbb{R}^3} n_s \vect{\nabla}\theta(\vect{r})\,\mathrm{d}^3r = -\hbar \frac{\int_{\mathbb{R}^3}n_s\vect{\nabla}\theta(\vect{r})\,\mathrm{d}^3 r}{\int_{\mathbb{R}^3}n_s\,\mathrm{d}^3 r} = -\hbar\vect{\nabla}\theta(\vect{r}).
+\end{aligned}\end{align} It is known from electrodynamics, that the momentum $\vect{p}$ of a charged particle of charge $q_s$ and mass $m_s$ in a magnetic field given by the vector potential $\vect{A}$ is accounted for by $\vect{p} = m_s\vect{v} + q_s\vect{A}$, hence in the case of $m_s = 2m_e$ and $q_s = -2e$ for Cooper pairs it holds that \begin{equation}\label{eq:cooper_pairs_in_magn_field}
+\vect{p} = 2m_e\vect{v} - 2e\vect{A},
+\end{equation} where $\vect{v}$ is the velocity of the Cooper pairs in the superconductor. Combining \cref{eq:momentum_expectation_value_cooper_pairs} and \cref{eq:cooper_pairs_in_magn_field} yields the equation \begin{equation}
+\vect{v} = \frac{1}{2m_e}\left(2e\vect{A}-\hbar\vect{\nabla}\theta\right).
+\end{equation} Taking the definition for the supercurrent density $\vect{j}_s$ given by \cref{eq:supercurrent_definition}, one obtains \begin{equation}
+\vect{j}_s = -\frac{e^2n_{e,s}}{m_e}\vect{A} + \hbar\frac{en_{e,s}}{2m_e}\vect{\nabla}\theta
+\end{equation} for the modified current density in the case of the provided link to quantum theory. Compared to \cref{eq:supercurrent_density_classical_london}, the above supercurrent density features an additional term involving the Planck constant $\hbar$ and the phase factor $\theta(\vect{r})$ of Cooper pairs in the superconductors.
+
+% Go on with flux quantisation 3.7 in lecture notes.
 
 %	\subsection{The BCS theory of superconductivity}
 %	\subsubsection{BCS theory}
@@ -1206,15 +1234,91 @@ Simplifying the kinetic energy expression $T$ and the potential energy term $V$ 
 \end{equation} one obtains the simplified forms of kinetic and potential energy as \begin{equation}
 T \approx \left(\frac{m_1}{2}+ \frac{m_2}{2}\right)l_1^2\dot{\alpha}_1^2 + \frac{m_2}{2}l_2^2\dot{\alpha}_2^2 + m_2l_1l_2\dot{\alpha}_1\dot{\alpha}_2
 \end{equation} and \begin{equation}
-V \approx -(m_1+m_2)gl_1\left(1+\frac{\alpha_1^2}{2}\right) - m_2gl_2\left(1-\frac{\alpha_2^2}{2}\right),
-\end{equation} where terms higher than order $\mathcal{O}(\alpha_i^2)$ or $\mathcal{O}(\dot{\alpha}_i^2)$ for $i \in \{1,2\}$ were neglected. Thus, a simplified Lagrangian $\mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2)$ for the double pendulum system can be written down as \begin{align}
+V \approx -(m_1+m_2)gl_1\left(1-\frac{\alpha_1^2}{2}\right) - m_2gl_2\left(1-\frac{\alpha_2^2}{2}\right),
+\end{equation} where terms higher than order $\mathcal{O}(\alpha_i^2)$ or $\mathcal{O}(\dot{\alpha}_i^2)$ for $i \in \{1,2\}$ were neglected. Thus, a simplified Lagrangian $\mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2)$ for the double pendulum system can be written down as \begin{align}\label{eq:lagrangiandoublependulum}
 \begin{aligned}
 	\mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2) &= T-V \\
-	&\approx \left(\frac{m_1}{2}+ \frac{m_2}{2}\right)l_1^2\dot{\alpha}_1^2  \frac{m_2}{2}l_2^2\dot{\alpha}_2^2 + m_2l_1l_2\dot{\alpha}_1\dot{\alpha}_2 \\ &\quad + (m_1+m_2)gl_1\left(1+\frac{\alpha_1^2}{2}\right) + m_2gl_2\left(1-\frac{\alpha_2^2}{2}\right).
+	&\approx \left(\frac{m_1}{2}+ \frac{m_2}{2}\right)l_1^2\dot{\alpha}_1^2  +\frac{m_2}{2}l_2^2\dot{\alpha}_2^2 + m_2l_1l_2\dot{\alpha}_1\dot{\alpha}_2 \\ &\quad + (m_1+m_2)gl_1\left(1-\frac{\alpha_1^2}{2}\right) + m_2gl_2\left(1-\frac{\alpha_2^2}{2}\right).
 \end{aligned}
-\end{align} Now, the Euler-Lagrange equations can be obtained for the system under consideration by calculating \begin{equation}
+\end{align} Now, the Euler-Lagrange equations can be obtained for the system under consideration by calculating \begin{equation}\label{eq:eulerlagrange_doublependulum}
 \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial \mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2)}{\partial \dot{\alpha}_i} = \frac{\partial \mathcal{L}(\alpha_1,\alpha_2, \dot{\alpha}_1\dot{\alpha}_2)}{\partial \alpha_i}, \quad i \in \{1,2\}.
-\end{equation}
+\end{equation} Applying \cref{eq:eulerlagrange_doublependulum} to \cref{eq:lagrangiandoublependulum} one obtains the first Euler-Lagrange equation as \begin{equation}
+(m_1+m_2)l_1^2\ddot{\alpha}_1 + m_2l_1l_2\ddot{\alpha}_2 + (m_1+m_2)gl_1\alpha_1 = 0,
+\end{equation} whereas the second Euler-Lagrange equation takes the simpler form \begin{equation}
+m_2l_1^2\ddot{\alpha}_2 + m_2l_1l_2\ddot{\alpha}_1 + m_2gl_2\alpha_2 = 0.
+\end{equation} Defining the vector $\vect{\alpha}(t) \doteq (\alpha_1(t),\alpha_2(t))^\top$, both Euler-Lagrange equations can be written in matrix form as \begin{equation}
+\underbrace{\begin{pmatrix}
+	(m_1+m_2)l_1^2 & m_2l_1l_2 \\
+	m_2l_1l_2 & m_2l_2^2
+\end{pmatrix}}_{\doteq\,\matr{M}}\begin{pmatrix}
+\ddot{\alpha}_1 \\ \ddot{\alpha}_2
+\end{pmatrix} + \underbrace{\begin{pmatrix}
+(m_1+m_2)gl_1 & 0 \\ 0 & m_2gl_2
+\end{pmatrix}}_{\doteq\,\matr{K}}\begin{pmatrix}
+\alpha_1 \\ \alpha_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\ 0
+\end{pmatrix}
+\end{equation} in full or shorthand as \begin{equation}\label{eq:doublependulum_shorthand_equation}
+\matr{M}\ddot{\vect{\alpha}} + \matr{K}\vect{\alpha} = 0.
+\end{equation} The shorthand form suggests a solution for $\vect{\alpha}(t)$ of the form \begin{equation}
+\vect{\alpha}(t) = \vect{c}e^{i\omega t} \quad \Rightarrow \quad \ddot{\vect{\alpha}}(t) = -\omega^2\vect{c}e^{i\omega t}.
+\end{equation} Inserting this to the shorthand equation \cref{eq:doublependulum_shorthand_equation}, the requirement equation \begin{equation}
+\det(\matr{K}-\omega^2\matr{M}) = 0
+\end{equation} results. Explicitly, this equation reads as \begin{equation}
+\omega^4m_1l_1l_2 - \omega^2(m_1+m_2)g(l_1+l_2) + (m_1+m_2)g^2.
+\end{equation} Using now the formula $x_{1,2} = (-b\pm \sqrt{b^2-4ac})/(2a)$ to solve quadratic equations of the form $ax^2 + bx + c = 0$, one obtains two possible solutions for the eigenfrequencies $\omega$ of the double pendulum, namely \begin{align}\small\begin{aligned}
+\omega_{1,2}^2 = \frac{(m_1+m_2)(l_1+l_2)\pm \sqrt{(m_1+m_2)^2(l_1+l_2)^2-4m_1(m_1+m_2)l_1l_2}}{2m_1l_1l_2}g.
+\end{aligned}\end{align} To provide an example, the two eigenfrequencies of the double pendulum for $m_1 = \SI{0.5}{\kilogram}$, $m_2 = \SI{1.5}{\kilogram}$, $l_1 = \SI{0.3}{\meter}$ and $l_2 = \SI{0.5}{\meter}$ are given by $\omega_1 \approx \SI{14.01}{\second^{-1}}$ and $\omega_2 \approx \SI{3.62}{\second^{-1}}$.
+
+Now, if equal lengths $l_1 = l_2 = l$ of the two arms is assumed and furthermore if the mass ratio $\mu \doteq \frac{m_2}{m_1}$ is defined, the formula for the eigenfrequencies simplifies substantially, as it is given by \begin{equation}\label{eq:eigenfrequencies_doublependulum}
+	\omega_{1,2}^2 = \frac{g}{l}\left(1+\mu \pm \sqrt{\mu+\mu^2}\right)
+\end{equation} in this case. The eigenfrequencies in this case hence only depend on the mass ratio $\mu = m_2/m_1$, as it is visualized in \cref{fig:eigenfrequencies_doublependulum} for $g/l= \SI{1}{\second^{-2}}$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/eigenfrequencies_doublependulum.pdf}
+	\caption{Visalization of \cref{eq:eigenfrequencies_doublependulum} for $g/l= \SI{1}{\second^{-2}}$.}
+	\label{fig:eigenfrequencies_doublependulum}
+\end{figure}
+
+Additionally, the eigenvectors $\vect{c}_1$ and $\vect{c}_2$ corresponding to the equation \begin{equation}
+	\left(\matr{K}-\omega_{1,2}^2\matr{M}\right)\vect{c}_{1,2} = 0
+\end{equation} can be derived to be \begin{equation}
+\vect{c}_1 = \begin{pmatrix}
+	1 \\ -\sqrt{\frac{1+\mu}{\mu}}
+	\end{pmatrix}, \qquad \vect{c}_2 =\begin{pmatrix} 1 \\ \sqrt{\frac{1+\mu}{\mu}}
+\end{pmatrix},
+\end{equation} where $l_1=l_2 = l$ was used. The general solution for $\vect{\alpha}(t)$ therefore is given by \begin{equation}
+\vect{\alpha}(t) = C_1\vect{c}_1e^{i\omega_1 t} + C_2\vect{c}_2e^{i\omega_2 t}.
+\end{equation} In order to obtain a real solution, this means taking the real part of the above complex solution, which is in full generality given by \begin{equation}
+\vect{\alpha}(t) = C_1\vect{c}_1 \cos(\omega_1 t + \varphi_1) + C_2\vect{c}_2\cos(\omega_2 t + \varphi_2),
+\end{equation} where $\varphi_1$ and $\varphi_2$ are optional phase shifts due to initial conditions and $C_1$ and $C_2$ are arbitrary constants determined also by the initial conditions. Given the initial conditions \begin{align}
+\begin{aligned}
+	\alpha_1(t=0) &= 0, \qquad &\dot{\alpha}_1(t=0) &= 0, \\
+	\alpha_2(t=0) &= \pi/6, \qquad  &\dot{\alpha}_2(t=0) &= 0,
+\end{aligned}
+\end{align} the obtained results for $l = \SI{0.4}{\meter}$ and $g = \SI{9.81}{\meter\second^{-2}}$ are visible in \cref{fig:angular_movement} for different values of $\mu = m_2/m_1$.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/angular_movement_dp0.25.pdf}
+	\end{subfigure} \hfill
+	\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{figures/angular_movement_dp0.5.pdf}
+	\end{subfigure} \\
+	\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{figures/angular_movement_dp1.pdf}
+	\end{subfigure} \hfill
+	\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{figures/angular_movement_dp2.pdf}
+	\end{subfigure}
+	\caption{Visualizations of the angular movement $\vect{\alpha}(t)$ of the double pendulum under the mentioned simplified conditions.}
+	\label{fig:angular_movement}
+\end{figure}
 
 \section{Autocollimators}
 Autocollimators can be used to measure angular movements in experimental setups. In principle, they consist of a light source, whose light passes through a beam splitter. One part of the light is reflected upon a position sensitive detector, the other half is brought through a lens parallelizing the light beams. Those light beams then travel to the target consisting of a flat mirror. If this mirror is not tilted with respect to the incident beams, the beams are reflected exactly vertically towards the lens, which focuses the beams to the focal point located on the plane of the position sensitive detector. If the target mirror however is tilted at angle $\alpha$, the incident and reflected beam are at angle $2\alpha$. The reflected beams pass again to the lens focalizing them in the focal plane. This results in two points on the focal plane, one point located at the default position serving as the reference point and a second point at distance $d$ from the reference point. This situation is depicted in \cref{fig:autocollimator}.
