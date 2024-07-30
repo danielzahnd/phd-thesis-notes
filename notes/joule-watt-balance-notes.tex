@@ -436,11 +436,16 @@ The first component amounts to zero, because $\psi_{k,n}$ are wave functions of 
 R_H = R_{xy} = \mathcal{R}_{xy} = \frac{h}{n_He^2},  \quad n_H \in \mathbb{N}
 \end{equation} is obtained.
 
+\subsection{Conditions for the quantum Hall effect to arise}
+It remains to be answered, under which circumstances the quantum Hall effect arises. The answer to this question is important to be able to actually build some experimental setup to realize a quantum Hall resistance standard.
+
+
+
+
 % Ideas for further research: 
 % - Explore edge states, specify, that at corners a potential is needed.
 % - Name conditions for QHE states to exist
 % - Explore the concept of disorder for QHE to surface
-
 	
 \section{The Josephson effect}
 	The Josephson voltage $U_J$ across a Josephson junction can be used for voltage measurements; according to \cite{Kajastie_2009} it is given by the equation \begin{equation}\label{eq:josephsoneffect}
@@ -941,25 +946,61 @@ Consider the setup as seen in \cref{fig:setup}. This is a mock-up of a part of t
 
 The metal plate simulating the coil in the real watt balance experiment oscillates about the vertical axis given by the vertical rod of the translational stage at an eigenfrequency $\vect{\omega} = (\omega_x, \omega_y)^\top$, which \cite[p.12]{Glardon.2024} reports to be given by $\omega_x = 2\pi \cdot \SI{1.2009\pm0.0003}{\hertz}$ and $\omega_y = 2\pi\cdot\SI{1.2236\pm0.0003}{\hertz}$.
 
-Consider now the case, where the rod connecting the coil to the articulation is rotated around the axis $i \in \{x,y\}$. The rotation angle can be written by $\varphi_i(t)$. Following \cite[p.8]{Glardon.2024}, the precise expression for $\varphi_i(t)$ can be written by \begin{equation}
+Consider now the case, where the rod connecting the coil to the articulation is rotated around the axis $i \in \{x,y\}$. The rotation angle can be written by $\varphi_i(t)$. Following \cite[p.8]{Glardon.2024}, the precise expression for $\varphi_i(t)$ can be written by \begin{equation}\label{eq:rotation_angle}
 	\varphi_i(t) = A_i\sin(\omega_i t) +  \theta_i,  \quad i \in \{x,y\},
 \end{equation} where $\theta_i$ denotes a potential bias rotation angle around the $i$-axis in the equilibrium position where no force except gravity acts on the coil.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{figures/situation.pdf}
-	\caption{Situation, if optical center is not aligned with the mechanical/geometrical center of the coil. The quantity $a_i$ denotes the displacement of a corner cube from the optical center in $i$-direcion, where $i  \in \{x,y\}$.}
-	\label{fig:situation}
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/abbe_error_misalignment.pdf}
+		\caption{Abbe error due to misalignment of the mechanical with the geometrical center.}
+		\label{fig:abbe_error_misalignment}
+	\end{subfigure}
+	\hfill
+		\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/abbe_error_tilt.pdf}
+		\caption{Abbe error due to oscillation of the coil with respect to the vertical axis of the system.}
+		\label{fig:abbe_error_tilt}
+	\end{subfigure}
+	\caption{Two situations giving rise to an Abbe error. Note, that $i,y \in \{x,y\}$ with $i \neq j$.}
+	\label{fig:abbe_error_situations}
 \end{figure}
 
-Considering that a corner cube may be displaced a distance $a_y$ in the coil's plane from the optical center, \cite[p.9]{Glardon.2024} derives the expression $z(t)$ for the vertical position of said corner cube to be 
-\begin{align}\label{eq:verticalpos}
+Let now $i, j \in \{x,y\}$ with the restriction of $i\neq j$ for the following material. If there is a tilt of the moving mirror in an interferometer system, the so-called Abbe error arises for a distance measurement. In the case of the described coil system, whose positions are measured by the mentioned three interferometers, there are two effects contributing to the Abbe error. The first effect is due to a misalignment of the mechanical with the geometrical center of the coil and its suspension system, whereas the second effect arises because of a possible oscillation of the coil about its suspension point. The sum of these two effect is generally time dependent and is quantified by $z(t)$. In \cref{fig:abbe_error_situations}, the two named situation giving rise to Abbe errors are visualized. The first situation depicted in \cref{fig:abbe_error_misalignment} gives rise to the error $z_1(t) = a_j\sin(\varphi_i(t))$ in the positive z-direction. The second situation given by \cref{fig:abbe_error_tilt} results in the error $z_2(t) = R(1-\cos(\varphi_i(t)))$. Considering that Abbe errors can originate for both oscillations around the x-axis and the y-axis, the full Abbe error is thus written as \begin{equation}
+	z(t) = \sum_{\substack{i,j \in \{x,y\} \\ i \neq j} }\left[R(1-\cos(\varphi_i(t))) + a_j\sin(\varphi_i(t))\right].
+\end{equation} Using \cref{eq:rotation_angle} and the small-angle approximations $\sin(x)\approx x$ aswell as $\cos(x) \approx 1- \frac{x^2}{2}$ for $x \ll 1$, furthermore only considering the time-dependent terms of the above equation, one finally arrives at the expression \begin{align}\begin{aligned}
+		z(t) \propto \sum_{\substack{i,j \in \{x,y\} \\ i \neq j} }A_i(a_j + R\theta_i)\sin(\omega_i t) - \frac{A_i^2 R}{4}\cos(2\omega_i t)
+\end{aligned}\end{align} after some simplification and rewriting steps. This simplification is largely carried out as follows:
+\begin{align}\tiny
 	\begin{aligned}
-		z(t) &\approx A_x(a_y + R \theta_x)\sin(\omega_x t) - \frac{A_x^2 R}{4}\cos(2\omega_x t) + \frac{RA_x^2}{4} + \theta_x\left(\frac{R\theta_x}{2}+ a_y\right)  \\ &\propto A_x(a_y + R \theta_x)\sin(\omega_x t) - \frac{A_x^2 R}{4}\cos(2\omega_x t), 
+		z(t) &= \sum_{\substack{i,j \in \{x,y\} \\ i \neq j} }\left[R(1-\cos(\varphi_i(t))) + a_j\sin(\varphi_i(t))\right] \approx \sum_{\substack{i,j \in \{x,y\} \\ i \neq j} }\left[R\frac{\varphi_i(t)^2}{2}+a_j\varphi_i(t)\right] \\
+		&= \sum_{\substack{i,j \in \{x,y\} \\ i \neq j} }\left[\frac{RA_i^2}{4}-\frac{RA_i^2}{4}\cos(2\omega_i t) + RA_i\theta_i\sin(\omega_i t)  + \frac{R\theta_i^2}{2}+a_jA_i\sin(\omega_i t) + a_j\theta_i\right] \\
+		&\propto \sum_{\substack{i,j \in \{x,y\} \\ i \neq j} }\left[ A_i(a_j + R\theta_i)\sin(\omega_i t) - \frac{RA_i^2}{4}\cos(2\omega_i t)\right].
 	\end{aligned}
-\end{align} 
-where the ``approximately equal'' sign stems from application of the small angle approximations $\sin(x) \approx x$ and $\cos(x) \approx 1 - \frac{1}{2}x^2$ for $x \ll 1$. Consider \cref{fig:situation} for a visualization of this situation. One can generalize this expression for displacements $a_x$ and $a_y$ of the corner cube from the optical center to be given as \begin{align}\begin{aligned}
-		z(t) \propto \sum_{\substack{i,j \in \{x,y\} \\ i \neq j} }A_i(a_j + R\theta_i)\sin(\omega_i t) - \frac{A_i^2 R}{4}\cos(2\omega_i t).
-\end{aligned}\end{align} Note, that the term featuring $\sin(\omega_xt)$ vanishes for $a_y = -R\theta_x$. This corresponds to the case, where one aligns the corner cube exactly with the optical center of the coil. If this is precisely the case, then the function $z(t)$ will only feature oscillations at angular frequency of two times the eigenfrequency $\omega_x$. Henceforth, the term with periodicity $\omega_x$ will be called the 1f-term; and the term with periodicity $2\omega_x$ the 2f-term. If generalized for deviations $a_x$, $a_y$ of the corner cube from the optical center, amplitudes $A_x$, $A_y$ in both x- and y-directions, eigenfrequencies $\omega_x$, $\omega_y$ in both x- and y-directions aswell as biases $\theta_x$, $\theta_y$, the function $z(t)$ becomes equivalent to the position signal $I_{OC}(t)$ of the vertical position for the optical center of the coil.
+\end{align}
+
+Note, that the terms featuring $\sin(\omega_it)$ vanish for $a_j = -R\theta_i$. This corresponds to the case, where one aligns the corner cube exactly with the optical center of the coil.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/z(t)_not_perfect.pdf}
+		\caption{Signal $z(t)$ for non-ideal alignment of the central corner cube with the optical center. The used parameters are $R = \SI{0.5}{\meter}$, $A_x = \SI{400}{\micro\radian}$, $A_y = \SI{200}{\micro\radian}$, $\theta_x = \theta_y = \SI{5}{\micro\radian}$, $a_x = \SI{20}{\micro\meter}$, $a_y = \SI{30}{\micro\meter}$ and $\omega_x = \omega_y = \SI{1.5}{\second^{-1}}$.}
+		\label{fig:z(t)_not_perfect}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/z(t)_perfect.pdf}
+		\caption{Signal $z(t)$ for ideal alignment of the central corner cube with the optical center. The used parameters are $R = \SI{0.5}{\meter}$, $A_x = \SI{400}{\micro\radian}$, $A_y = \SI{200}{\micro\radian}$, $\theta_x = \theta_y = \SI{5}{\micro\radian}$, $a_x = -R\theta_y$, $a_y = -R\theta_x$ and $\omega_x = \omega_y = \SI{1.5}{\second^{-1}}$.}
+		\label{fig:z(t)_perfect}
+	\end{subfigure}
+	\caption{Visualizations of signals $z(t)$ for two cases.}
+	\label{fig:z(t)}
+\end{figure}
+If this is precisely the case, then the function $z(t)$ will only feature oscillations at angular frequency of two times the eigenfrequencies $\omega_i$. Henceforth, the terms with frequencies $\omega_i$ will be called the 1f-terms; and the terms with frequencies $2\omega_i$ the 2f-terms. Both cases, i.e. ideal and non-ideal alignment of the corner cube with the optical center are visualized in \cref{fig:z(t)}. The generalized function $z(t)$ is equivalent to the position signal $I_{OC}(t)$ of the vertical position for the optical center of the coil, which will be introduced in the material below.
 % Summarize theory needed for calculations
 
 \subsubsection{Calculation of the signal in the optical center of the coil}
