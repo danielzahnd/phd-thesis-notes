@@ -191,7 +191,7 @@
 	
 	Let now a single electron represent the electronic flow restricted to the x-y-plane in a flat material as shown in \cref{fig:classicalhalleffect}. Such an electron in the material is subject to the Lorentz force \begin{equation}
 		\vect{F}_L = q\vect{E} + q\vect{v}\times\vect{B}.
-	\end{equation} Using Newton's second law and $q=-e$, one can derive the equation of motion \begin{equation}
+	\end{equation} Using Newton's second law and $q=-e$, one can derive the equation of motion \begin{equation}\label{eq:equation_of_motion_electrons_hall_effect}
 	m_e\frac{\mathrm{d}\vect{v}}{\mathrm{d}t} = -e\vect{E} - e\vect{v}\times \vect{B} - \tau^{-1}m_e\vect{v},
 	\end{equation} where a resistive term $\vect{F}_R = -\tau^{-1} m_e\vect{v}$ has been added. The resistive force counteracts the Lorentz acceleration and therefore has a negative sign; it is furthermore assumed to scale linearly with velocity $\vect{v}$. The parameter $\tau$ with units $[\tau] = \si{\second}$ can be interpreted as scattering time; hence the larger $\tau$ is, the less collisions will take place between charge carriers in the material and the less electrical resistance the material will have. Requiring, that the charge carriers in the material are in equilibrium and hence are non-accelerated, \begin{equation}\label{eq:che_equilibriumcondition}
 	e\vect{v}\times \vect{B} + \tau^{-1}m_e\vect{v} = -e\vect{E}
@@ -374,12 +374,16 @@ E_n = \left(n+\frac{1}{2}\right)\hbar \omega_B, \quad n \in \mathbb{N}_0.
 E_{n,k} = \left(n+\frac{1}{2}\right)\hbar \omega_B -\frac{k\hbar E}{B} - \frac{m_e E^2}{2B^2};
 \end{equation} whereas the eigenfunctions are given by \begin{equation}
 \psi_{k,n}(x,y) \propto e^{iky}H_n\left(\frac{x}{l_B} + kl_B + \frac{m_eE}{eB^2l_B}\right)e^{-\frac{\left(x+kl_B^2+\frac{m_eE}{eB^2}\right)^2}{2l_B^2}}.
-\end{equation} The properly normalized wave function can only be obtained for a finite material of length $L_y$ in the y-direction as\begin{align}\footnotesize\begin{aligned}\label{eq:quantumhall_eigenfunctions_electricnonzero}
+\end{equation} 
+Note, that the harmonic oscillator eigenstates are now dependent upon the wavenumber $k$. The wavenumber $k$ is a measure of the propagation speed of the eigenfunctions $\psi_{k,n}(x,y) \propto e^{iky}$, hence the eigenstates drift in the y-direction with group speed \begin{equation}\label{eq:qhe_state_drift}
+	v_y = \frac{1}{\hbar}\frac{\partial E_{n,k}}{\partial k} = -\frac{E}{B}.
+\end{equation} Hence the states drift in the direction of $\vect{E} \times \vect{B} = -EB\vect{e}_y$, as they move in the y-direction and the electric and magnetic fields are given by $\vect{E} = E\vect{e}_x$ and $\vect{B} = B\vect{e}_z$. More specifically, the drift velocity of states $\vect{v}_{d,s} = (0,-E/B, 0)^\top$ is given by $\vect{v}_{d,s} = B^{-2}\vect{E}\times\vect{B}$.
+Now, considering again the wave functions associated to the eigenstates, the properly normalized wave function can only be obtained for a finite material of length $L_y$ in the y-direction as\begin{align}\footnotesize\begin{aligned}\label{eq:quantumhall_eigenfunctions_electricnonzero}
 \psi_{k,n}(x,y) = \frac{1}{\sqrt{L_y \, l_B \sqrt{\pi} \, 2^n \, n!}} e^{iky} H_n\left(\frac{x}{l_B} + kl_B + \frac{m_e E}{eB^2 l_B}\right) e^{-\frac{\left(x+kl_B^2+\frac{m_e E}{eB^2}\right)^2}{2l_B^2}}.
 \end{aligned}\end{align} by satisfying the requirement $\iint_{\mathbb{R}^2}|\psi_{k,n}(x,y)|^2\,\mathrm{d}x\,\mathrm{d}y \overset{!}{=} 1$.
 % Give eigenstates and eigenfunctions, if electric field is non-zero.
 
-\subsection{Deriving the quantum Hall resistance}
+\subsection{Deriving the quantum Hall resistance}\label{sec:deriv_quantum_Hall}
 In order do understand the integer quantum Hall effect, the degeneracy of energy eigenstates for values of $k$ at the same quantum number $n$ is key. Each level $E_n$ is known as a Landau level, for which several states with different $k$-values exist. Each value of $k$ per value of $n$ can be thought of representing an electron; thus the Landau levels can be understood of electron bands. Hence, in order to calculate a current flowing through some finite flat material of length $L_x$ and width $L_y$ in the x-y-plane, one has to know how many electron states there are. Thus the degeneracy of each energy eigenstate $E_n$ in terms of $k$ has to be known. % Calculate degeneracy, mention ininite square well, potentially make picture to show degeneracy calculation.
 
 In order to calculate the amount of allowed values of $k$ for a given energy state $n$, one integrates over $k$ from the minimal allowed to the maximal allowed value of $k$, namely $ k \in [k_{min},k_{max}]$, and divides by the spacing $\Delta_k$ of $k$-states subsequently. Mathematically, the degeneracy $g$ is calculated as \begin{equation}
@@ -436,11 +440,58 @@ The first component amounts to zero, because $\psi_{k,n}$ are wave functions of 
 R_H = R_{xy} = \mathcal{R}_{xy} = \frac{h}{n_He^2},  \quad n_H \in \mathbb{N}
 \end{equation} is obtained.
 
-\subsection{Conditions for the quantum Hall effect to arise}
-It remains to be answered, under which circumstances the quantum Hall effect arises. The answer to this question is important to be able to actually build some experimental setup to realize a quantum Hall resistance standard.
+\subsection{Observational conditions for the quantum Hall effect}
+It remains to be answered, under which circumstances the quantum Hall effect is observable. The answer to this question is important to be able to actually build some experimental setup to realize a quantum Hall resistance standard.
+
+Broadly speaking, there are five necessary conditions to be fulfilled in order to observe the quantum Hall effect, namely low temperature, strong magnetic field, two dimensional geometry, high mobility of electrons and sufficient disorder in the material. Each of these conditions will now be explained in more detail.
+
+\subsubsection{Condition 1: Low temperature}
+One of the most important conditions for the quantum Hall effect to arise is sufficiently low temperature $T$ of the quantum Hall system. The energy eigenstates of the quantum Hall system are just those of the quantum harmonic oscillator, given by \begin{equation}
+	E_n = \hbar\omega_B\left(n+\frac{1}{2}\right), \quad n \in \mathbb{N}.
+\end{equation} These energies are called Landau levels, which are hence proportional to the energy $\hbar\omega_B = \hbar eB/m_e$. The energy eigenstates mark the energy plateaus observable with the quantum Hall effect; thus they need to be well separated. However, if there is a non-zero temperature of the quantum hall system, electrons in the system will not only feature motion due to a magnetic and potentially an electric field, but also due to thermal energy, which is quantified by $k_B T$. The requirement, that the Landau levels need to be well separated in order for them to be observed, translates therefore to the expressions \begin{equation}\label{eq:qhe_existence_temp_cond}
+k_B T \ll \hbar\omega_B = \hbar \frac{eB}{m_e} \quad \Leftrightarrow \quad  \frac{T}{B} \ll \frac{\hbar e}{m_ek_B} \quad \Leftrightarrow \quad T \ll \hbar\frac{eB}{m_ek_B}.
+\end{equation} \cite{PhysRevLett.45.494} in their original paper give the magnetic field strength $B_{typ}$ for a typical quantum Hall experiment to be $B_{typ} \approx \SI{13}{\tesla}$ and the temperature $T_{typ}$ as $T_{typ} \approx \SI{1.8}{\kelvin}$. Now, using these data to arrive at an estimation of a critical temperature $T_{crit}$, one can calculate \begin{equation}
+T_{crit} = \hbar\frac{eB_{typ}}{m_ek_B} \approx \SI{17.46}{\kelvin}.
+\end{equation} As one can see, the temperature $T$ of a quantum Hall system needs to be much lower than $T_{crit}$, namely $T \ll T_{crit}$. The typical temperature noted by \cite{PhysRevLett.45.494} partially fulfills this requirement, as $T_{typ} < T_{crit}$.
+
+\subsubsection{Condition 2: Strong magnetic field}
+From the temperature conditions \cref{eq:qhe_existence_temp_cond} it is directly evident, that the ratio of $T/B$ needs to be minimized in order for the Landau energy states to be properly separated, which is needed for them to be observed. As $T$ is low and near zero, the ratio $T/B$ can be further minimized by maximizing the magnetic field strength $B$; thus, a high magnetic field $B$ is a necessary condition for the quantum Hall effect to be observed. 
+
+However, the magnetic field can also get too strong for the Landau levels to be properly observed. This is the case when the magnetic field get so strong such that the Landau levels become widely spaces and thus overlap. A strong magnetic field has large amounts of energy stored in it; hence, electrons in the system moving according to \cref{eq:equation_of_motion_electrons_hall_effect} can gain sufficient energy to jump between Landau energy levels, thus leading to a breakdown of the well separated energy levels in the quantum Hall system.
+
+\subsubsection{Condition 3: Two dimensional geometry}
+The above given derivation \cref{sec:deriv_quantum_Hall} for the expression of the quantum Hall effect \cref{eq:quantumhalleffect} presupposes a number of experiment specifications. One of these requirements is that the geometry of the experiment is two dimensional; that is, the movement of the charge carriers is restricted to the x-y-plane. This requirement therefore has to be fulfilled to a best approximation in real-life implementations of a quantum Hall effect experiment.
+
+\subsubsection{Condition 4: High mobility of electrons}
+In quantum mechanics, the Heisenberg uncertainty relation \begin{equation}
+	\Delta x \Delta p \geq \frac{\hbar}{2}
+\end{equation} does apply for uncertainties $\Delta x$ in position and $\Delta p$ in momentum. This uncertainty principle is inherent to the fundamentals of quantum theory, the deeper reason being that if two operators - such as the position and momentum operators - do not commute with one another, it is impossible to construct a basis of simultaneous eigenstates of both operators. By the same principle, the so-called energy-time uncertainty relation \begin{equation}
+\Delta E\Delta t \geq \frac{\hbar}{2}
+\end{equation} can be derived, where $\Delta E$ is uncertainty in energy and $\Delta t$ uncertainty in time.
+
+Now, the mobility of electrons in a quantum Hall system is related to the scattering time $\tau$ of the equation \cref{eq:equation_of_motion_electrons_hall_effect} of motion of electrons in the classical Hall effect system. The scattering time is a measure of the mobility of electrons insofar, as a higher scattering time means that more time between collisions of electrons passes. Therefore, if $\tau$ is high, one also has a large mobility; hence mobility is directly proportional to the scattering time $\tau$. Now, let $\Delta E$ denote the uncertainty inherent to the Landau energy levels of the quantum Hall effect and identify $\tau$ with the uncertainty in time $\Delta t$ of the energy-time uncertainty principle. Hence, one can derive \begin{equation}
+	\Delta E \tau \propto \hbar \quad \Leftrightarrow \quad \Delta E \propto \frac{\hbar}{\tau}.
+\end{equation} It is evident from this expression, that the higher the mobility of electrons in the system is, the lower the spread of Landau energy levels of the quantum Hall system will be. Thus at high electron mobility, the Landau energy levels are well defined and their width is such that they do not overlap, hence rendering the Landau energy plateaus well visible.
+
+\subsubsection{Condition 5: Sufficient disorder}
+Disorder due to impurities, defects or lattice imperfections of the quantum Hall sample leads to so-called localization of electron wave functions. Each Landau level has states of low energy spread, called the localized states; and states of large energy spread, called the extended states. If only extended states were present in the system, some energy states of a lower Landau level could overlap with a Landau level of higher energy, thus leading to not well defined Landau energy levels and hence to difficulties in making the quantum Hall effect visible in an experiment. Since disorder leads to localization of electron wave functions in the system, it contributes to the Landau energy levels to be well defined and separated. 
+
+There however can also be to much disorder present in the material. Disorder can be quantified by a potential term $V(\vect{r})$ in the Hamiltonian operator of the quantum Hall system. Given that the Landau levels have an energy of order $\hbar \omega_B$, the potential simulating the disorder must be much smaller in order for the Landau levels to be still well separated. Therefore, the upper limit to disorder \begin{equation}
+	V(\vect{r}) \ll \hbar \omega_B = \hbar \frac{eB}{m_e}
+\end{equation} applies.
+
+% Study 2.2.1 & 2.2.2 and baby version (p.43ff) in Tong lecture notes
+% Also ask ChatGPT supplying the lecture notes
+% Concerining temperature: Provide estimation based on comparison of
+% k_B T << \hbar \omega_B for the thermic energy to be much less than
+% the Landau plateaus. This is needed to observe the QHE!
+% Argument about impurities for the plateaus to exist (for range of magnetic field same plateau)
+
+\subsection{Edge modes}
+The above treatment and derivation of the integer quantum Hall effect assumes, that a particle inside the system has zero potential energy. This is however not true in reality; especially at the edges of the material, the potential term in the Hamilton operator for a particle in the system is non-zero. This gives rise to so-called edge modes, which will be further explored in this subsection.
 
 
-
+% Study 2.1.1 in Tong lecture notes
 
 % Ideas for further research: 
 % - Explore edge states, specify, that at corners a potential is needed.
@@ -538,7 +589,7 @@ Taking \cref{eq:josephson_schroedinger_equation} as a starting point, the two so
 \dot{\phi}_2 = \frac{1}{\hbar}\left(eU_J-K\sqrt{\frac{n_1}{n_2}}\cos(\theta)\right),
 \end{equation} where the complex identity for the cosine function was employed.
 
-\subsubsection{The Josephson effect}
+\subsection{Deriving the Josephson equations}
 Consider a Josephson junction as depicted in \cref{fig:josephson_junction}, where the time evolution of the phases $\phi_1$, $\phi_2$ and the charge carrier densities $n_1$ and $n_2$ are given by \begin{equation}
 	\dot{\phi}_1 = -\frac{1}{\hbar}\left(eU_J + K\sqrt{\frac{n_2}{n_1}}\cos(\theta)\right), \quad  \dot{\phi}_2 = \frac{1}{\hbar}\left(eU_J-K\sqrt{\frac{n_1}{n_2}}\cos(\theta)\right)
 \end{equation} and \begin{equation}
@@ -557,7 +608,20 @@ If one now irradiates a Josephson junction with microwave radiation of angular f
 n_J\omega_J = \frac{2eU_J}{\hbar} = 2\pi n_Jf_J \quad \Leftrightarrow \quad U_J = \frac{h}{2e}n_Jf_J,
 \end{equation} which is the final expression for the DC-components of the AC-Josephson effect.
 
-	
+\subsection{Observational conditions for the Josephson effect}
+The question remains, under which circumstances the Josephson effect can actually be observed. The answer to this question is important to be able to realize a Josephson voltage standard.
+
+Broadly speaking, there are three necessary conditions to be fulfilled in order to observe the Josephson effect, namely low temperature, superconducting materials and a stable Josephson junction irradiation frequency. Each of these conditions will now be explained in more detail.
+
+\subsubsection{Condition 1: Low temperature}
+Text.
+
+\subsubsection{Condition 2: Superconducting materials}
+Text.
+
+\subsubsection{Condition 3: Stable irradiation frequency}
+Text.
+
 \chapter{Superconductivity}
 Superconductivity is a peculiar state of matter, in which an electrical current through the material experiences no resistance. Superconducting materials are used in many technological and science applications, among which also the watt and joule balances take their place. The latter applications make use of so-called Josephson junctions, which essentially are voltage standards connecting a measured voltage to units of the Planck constant $h$. It is therefore integral to understanding the watt and joule balance methods in detail to consider some main topics of superconductivity.
 
@@ -795,6 +859,12 @@ U_d = C_dU_{J,d} = C_d\frac{h}{2e}n_{J,d}f_{J,d}, \quad I_s = \frac{U_s}{R_s} = 
 \end{equation} where $C_d$ and $C_s \doteq C_{s1}/C_{s2}$ are dimensionless calibration factors. Combining these equations with \cref{eq:fundamentalequation_almost_simple}, one obtains the fundamental Kibble balance equation \begin{equation}
 m = C\frac{f_{J,d}f_{J,s}}{gv}h, \qquad C \doteq C_dC_s\frac{n_{J,d}n_{J,s} n_H}{4}
 \end{equation} relating the mass $m$ to the Planck constant, the meter and the second. Hereby $f_{J,d}$ and $f_{J,s}$ are the Josephson frequencies for both the voltage aswell as the current measurement in the dynamic or the static mode respectively. Furthermore, $g$ is to be regarded as the local gravitational constant at the time of measurement and $v$ is the vertical velocity in the direction of local gravitation. This equation can be used for an uncertainty evaluation of the calculated mass, where $C$, $f_{J,d}$, $f_{J,s}$, $g$ and $v$ have an uncertainty associated to them, and $h$ is a constant of nature without uncertainty.
+
+\section{Experiment preparation}
+In order to conduct measurements and thereby gather data to process, preparation of the experiment is necessary. There are several key steps to ensure, that the METAS Kibble balance is properly prepared and aligned to minimize possible error sources on the outcome of the experiment as well as possible. This will help to keep the uncertainty budget for the experiment as low as possible. The following material is concerned with a detailed description of the experiment preparation prior to any measurement.
+
+\subsection{Step 1: Text}
+Text.
 
 \section{Data processing}
 In this section, the theory of data processing for data obtained by the current METAS Kibble balance is derived. Furthermore, the derived theory is applied to an example batch of data and compared to the results as published by \cite{Eichenberger_2022}.
